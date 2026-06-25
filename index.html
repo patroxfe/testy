@@ -141,12 +141,12 @@
           <button class="btn btn-sec" onclick="newRound()">Rozpocznij od nowa</button></div>`;
       }
 
-      questions.forEach(q => {
+      questions.forEach((q, n) => {
         const sel = answers[q.id];
         const ok = sel === q.correct;
         let cls = "card";
         if (submitted && sel !== null) cls += ok ? " ok" : " bad";
-        html += `<div class="${cls}"><div class="num">Pytanie ${q.id}</div>
+        html += `<div class="${cls}"><div class="num">Pytanie ${n + 1}</div>
           <p class="qtext">${q.text}</p><ul class="opts">`;
         q.options.forEach((opt, i) => {
           let ocls = "opt";

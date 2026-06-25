@@ -1,0 +1,136 @@
+{
+  "title": "Adaptacja dziecka do przedszkola i szkoły 2026",
+  "questions": [
+    {
+      "id": 1,
+      "text": "Do elementów gotowości przedszkolnej NIE zalicza się:",
+      "options": [
+        "podstawowej samoobsługi",
+        "radzenia sobie z rozłąką z rodzicami",
+        "gotowości do zabawy bez asysty rodzica",
+        "wstępnej umiejętności nauki czytania"
+      ],
+      "correct": 3
+    },
+    {
+      "id": 2,
+      "text": "Jakie czynniki utrudniają dziecku adaptację do przedszkola?",
+      "options": [
+        "Labilność uczuciowa",
+        "Wrażliwość emocjonalna",
+        "Trudności w zakresie mowy",
+        "Wszystkie powyższe"
+      ],
+      "correct": 3
+    },
+    {
+      "id": 3,
+      "text": "Bodźce przedszkolne:",
+      "options": [
+        "Są dla trzylatka czynnikiem stymulującym rozwój",
+        "Nadmiernie obciążają jego układ sensoryczny",
+        "Stanowią ciekawą alternatywę dla dotychczasowej nudy"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 4,
+      "text": "Które z poniższych zachowań jest uznawane za normatywny przejaw lęku separacyjnego u dziecka rozpoczynającego edukację przedszkolną:",
+      "options": [
+        "Płacz i protest podczas rozstania z rodzicem, który mija w ciągu kilkunastu minut po rozpoczęciu zabawy",
+        "Apatia, brak kontaktu wzrokowego z nauczycielem i odmowa przyjmowania posiłków przez cały dzień",
+        "Natychmiastowe, bezproblemowe wchodzenie do sali bez odwracania się w stronę rodzica od pierwszego dnia",
+        "Agresja fizyczna, skierowana wobec innych dzieci i dorosłych opiekunów"
+      ],
+      "correct": 0
+    },
+    {
+      "id": 5,
+      "text": "Pojęcie gotowości szkolnej oznacza:",
+      "options": [
+        "Osiągnięcie przez dziecko wieku biologicznego 7 lat",
+        "Osiągnięcie takiego poziomu rozwoju fizycznego, psychicznego, społecznego i emocjonalnego, który umożliwia prawidłowe funkcjonowanie w warunkach szkoły",
+        "Opanowanie umiejętności płynnego czytania i pisania",
+        "Zdolności bezwzględnego posłuszeństwa wobec osób dorosłych"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 6,
+      "text": "Które z działań nauczyciela przedszkola najbardziej sprzyja obniżeniu lęku u dzieci na początku roku przedszkolnego?",
+      "options": [
+        "Wprowadzenie sztywnej dyscypliny i ignorowanie płaczu, aby dzieci szybciej zrozumiały zasady i normy, obowiązujące w grupie",
+        "Stosowanie powtarzalnych rytuałów, jasnego planu dnia oraz okazywanie empatii i wsparcia emocjonalnego",
+        "Organizowanie głośnych zabaw ruchowych o charakterze rywalizacyjnym",
+        "Pozostawienie dzieci samych sobie, aby samodzielnie rozwiązywały kryzys rozstania"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 7,
+      "text": "Zjawisko „szoku adaptacyjnego” u pierwszoklasistów najczęściej wiąże się ze zmianą dominującej formy aktywności. Jaka zmiana tu zachodzi?",
+      "options": [
+        "Przejście od aktywności zadaniowej do aktywności swobodnej",
+        "Przejście od dominacji zabawy do dominacji systematycznej nauki (aktywności zadaniowej)",
+        "Przejście od pracy indywidualnej do pracy wyłącznie w grupach",
+        "Całkowity brak aktywności fizycznej na rzecz rozwoju intelektualnego"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 8,
+      "text": "Wskaż prawidłową postawę rodzica podczas rozstania z dzieckiem w szatni przedszkolnej:",
+      "options": [
+        "Przedłużanie pożegnania, wracanie do sali i ponowne przytulanie na każdy płacz dziecka",
+        "Czułe, jasne, ale krótkie pożegnanie, określenie czasu powrotu w sposób zrozumiały dla dziecka i konsekwentne odejście",
+        "Ucieczka bez pożegnania, gdy dziecko na chwilę odwróci uwagę",
+        "Okłamywanie dziecka, że rodzic idzie tylko do samochodu i zaraz wraca"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 9,
+      "text": "Dni adaptacyjne w przedszkolu polegają głównie na",
+      "options": [
+        "Pedagogizacji rodziców",
+        "Zapoznawaniu z regulaminem placówki",
+        "Przybliżaniu zarówno dzieciom, jak i rodzicom organizacji dnia przedszkolnego",
+        "Zabawach integrujących"
+      ],
+      "correct": 2
+    },
+    {
+      "id": 10,
+      "text": "Który z czynników jest uznawany za kluczowy w kontekście dojrzałości emocjonalnej dziecka rozpoczynającego naukę w szkole?",
+      "options": [
+        "Umiejętność pisania",
+        "Zdolność do kontrolowania swoich impulsów i radzenia sobie z porażką",
+        "Posiadanie wysokiego poziomu IQ",
+        "Zdolność do długiego siedzenia w ławce bez ruchu"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 11,
+      "text": "Rola rodziców w procesie adaptacji dziecka do szkoły polega na",
+      "options": [
+        "Wyręczaniu dziecka we wszystkich nowych obowiązkach",
+        "Budowaniu pozytywnego obrazu szkoły z jednoczesnym wspieraniem samodzielności dziecka",
+        "Unikaniu rozmów o szkole, aby nie potęgować stresu u dziecka",
+        "Wymaganiu najlepszych ocen"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 12,
+      "text": "Który z procesów poznawczych odgrywa najważniejszą rolę w adaptacji dziecka do szkoły?",
+      "options": [
+        "Pamięć mechaniczna",
+        "Zdolność do celowej i trwałej uwagi (uwaga dowolna)",
+        "Myślenie abstrakcyjne",
+        "Wyobraźnia twórcza"
+      ],
+      "correct": 1
+    }
+  ]
+}

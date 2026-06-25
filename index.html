@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Adaptacja dziecka do przedszkola i szkoły 2026</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      background: #f4f6f8;
+      color: #1a1a1a;
+      line-height: 1.5;
+    }
+    .page { max-width: 640px; margin: 0 auto; padding: 16px 16px 32px; }
+    .header, .result, .card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 12px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    }
+    .header h1 { font-size: 1.15rem; margin-bottom: 8px; }
+    .progress { font-size: 0.875rem; color: #555; }
+    .bar { height: 6px; background: #e0e4e8; border-radius: 3px; margin-top: 8px; overflow: hidden; }
+    .bar-fill { height: 100%; background: #2563eb; transition: width 0.3s; }
+    .num { font-size: 0.75rem; font-weight: 600; color: #2563eb; text-transform: uppercase; margin-bottom: 6px; }
+    .qtext { font-size: 0.95rem; font-weight: 600; margin-bottom: 12px; }
+    .opts { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .opt {
+      display: flex; gap: 10px; padding: 12px;
+      border: 2px solid #e0e4e8; border-radius: 10px;
+      cursor: pointer; font-size: 0.9rem; min-height: 48px;
+    }
+    .opt input { margin-top: 3px; width: 18px; height: 18px; flex-shrink: 0; }
+    .opt.sel { border-color: #2563eb; background: #eff6ff; }
+    .opt.ok { border-color: #16a34a; background: #f0fdf4; }
+    .opt.bad { border-color: #dc2626; background: #fef2f2; }
+    .card.ok { border-left: 4px solid #16a34a; }
+    .card.bad { border-left: 4px solid #dc2626; }
+    .result { text-align: center; padding: 24px 16px; }
+    .score { font-size: 2.5rem; font-weight: 800; color: #2563eb; }
+    .btn {
+      display: block; width: 100%; padding: 14px; margin-top: 10px;
+      border: none; border-radius: 10px; font-size: 1rem; font-weight: 600;
+      cursor: pointer; min-height: 48px;
+    }
+    .btn-main { background: #2563eb; color: #fff; }
+    .btn-main:disabled { background: #93b4f0; cursor: not-allowed; }
+    .btn-sec { background: #fff; color: #2563eb; border: 2px solid #2563eb; }
+    .hint { text-align: center; font-size: 0.8rem; color: #888; margin-top: 8px; }
+    .submit-area { position: sticky; bottom: 0; padding: 16px 0 8px; background: linear-gradient(transparent, #f4f6f8 30%); }
+    @media (min-width: 480px) {
+      .page { padding: 24px 20px 40px; }
+      .header h1 { font-size: 1.35rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page" id="app"></div>
+
+  <script id="quiz-data" type="application/json">
+{
+  "title": "Adaptacja dziecka do przedszkola i szkoły 2026",
+  "questions": [
+    {"id":1,"text":"Do elementów gotowości przedszkolnej NIE zalicza się:","options":["podstawowej samoobsługi","radzenia sobie z rozłąką z rodzicami","gotowości do zabawy bez asysty rodzica","wstępnej umiejętności nauki czytania"],"correct":3},
+    {"id":2,"text":"Jakie czynniki utrudniają dziecku adaptację do przedszkola?","options":["Labilność uczuciowa","Wrażliwość emocjonalna","Trudności w zakresie mowy","Wszystkie powyższe"],"correct":3},
+    {"id":3,"text":"Bodźce przedszkolne:","options":["Są dla trzylatka czynnikiem stymulującym rozwój","Nadmiernie obciążają jego układ sensoryczny","Stanowią ciekawą alternatywę dla dotychczasowej nudy"],"correct":1},
+    {"id":4,"text":"Które z poniższych zachowań jest uznawane za normatywny przejaw lęku separacyjnego u dziecka rozpoczynającego edukację przedszkolną:","options":["Płacz i protest podczas rozstania z rodzicem, który mija w ciągu kilkunastu minut po rozpoczęciu zabawy","Apatia, brak kontaktu wzrokowego z nauczycielem i odmowa przyjmowania posiłków przez cały dzień","Natychmiastowe, bezproblemowe wchodzenie do sali bez odwracania się w stronę rodzica od pierwszego dnia","Agresja fizyczna, skierowana wobec innych dzieci i dorosłych opiekunów"],"correct":0},
+    {"id":5,"text":"Pojęcie gotowości szkolnej oznacza:","options":["Osiągnięcie przez dziecko wieku biologicznego 7 lat","Osiągnięcie takiego poziomu rozwoju fizycznego, psychicznego, społecznego i emocjonalnego, który umożliwia prawidłowe funkcjonowanie w warunkach szkoły","Opanowanie umiejętności płynnego czytania i pisania","Zdolności bezwzględnego posłuszeństwa wobec osób dorosłych"],"correct":1},
+    {"id":6,"text":"Które z działań nauczyciela przedszkola najbardziej sprzyja obniżeniu lęku u dzieci na początku roku przedszkolnego?","options":["Wprowadzenie sztywnej dyscypliny i ignorowanie płaczu, aby dzieci szybciej zrozumiały zasady i normy, obowiązujące w grupie","Stosowanie powtarzalnych rytuałów, jasnego planu dnia oraz okazywanie empatii i wsparcia emocjonalnego","Organizowanie głośnych zabaw ruchowych o charakterze rywalizacyjnym","Pozostawienie dzieci samych sobie, aby samodzielnie rozwiązywały kryzys rozstania"],"correct":1},
+    {"id":7,"text":"Zjawisko „szoku adaptacyjnego” u pierwszoklasistów najczęściej wiąże się ze zmianą dominującej formy aktywności. Jaka zmiana tu zachodzi?","options":["Przejście od aktywności zadaniowej do aktywności swobodnej","Przejście od dominacji zabawy do dominacji systematycznej nauki (aktywności zadaniowej)","Przejście od pracy indywidualnej do pracy wyłącznie w grupach","Całkowity brak aktywności fizycznej na rzecz rozwoju intelektualnego"],"correct":1},
+    {"id":8,"text":"Wskaż prawidłową postawę rodzica podczas rozstania z dzieckiem w szatni przedszkolnej:","options":["Przedłużanie pożegnania, wracanie do sali i ponowne przytulanie na każdy płacz dziecka","Czułe, jasne, ale krótkie pożegnanie, określenie czasu powrotu w sposób zrozumiały dla dziecka i konsekwentne odejście","Ucieczka bez pożegnania, gdy dziecko na chwilę odwróci uwagę","Okłamywanie dziecka, że rodzic idzie tylko do samochodu i zaraz wraca"],"correct":1},
+    {"id":9,"text":"Dni adaptacyjne w przedszkolu polegają głównie na","options":["Pedagogizacji rodziców","Zapoznawaniu z regulaminem placówki","Przybliżaniu zarówno dzieciom, jak i rodzicom organizacji dnia przedszkolnego","Zabawach integrujących"],"correct":2},
+    {"id":10,"text":"Który z czynników jest uznawany za kluczowy w kontekście dojrzałości emocjonalnej dziecka rozpoczynającego naukę w szkole?","options":["Umiejętność pisania","Zdolność do kontrolowania swoich impulsów i radzenia sobie z porażką","Posiadanie wysokiego poziomu IQ","Zdolność do długiego siedzenia w ławce bez ruchu"],"correct":1},
+    {"id":11,"text":"Rola rodziców w procesie adaptacji dziecka do szkoły polega na","options":["Wyręczaniu dziecka we wszystkich nowych obowiązkach","Budowaniu pozytywnego obrazu szkoły z jednoczesnym wspieraniem samodzielności dziecka","Unikaniu rozmów o szkole, aby nie potęgować stresu u dziecka","Wymaganiu najlepszych ocen"],"correct":1},
+    {"id":12,"text":"Który z procesów poznawczych odgrywa najważniejszą rolę w adaptacji dziecka do szkoły?","options":["Pamięć mechaniczna","Zdolność do celowej i trwałej uwagi (uwaga dowolna)","Myślenie abstrakcyjne","Wyobraźnia twórcza"],"correct":1}
+  ]
+}
+  </script>
+
+  <script>
+    const quiz = JSON.parse(document.getElementById("quiz-data").textContent);
+    let questions = [];
+    let answers = {};
+    let submitted = false;
+
+    function shuffle(arr) {
+      const a = [...arr];
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    }
+
+    function newRound() {
+      submitted = false;
+      answers = {};
+      questions = shuffle(quiz.questions).map(q => {
+        const indexed = q.options.map((text, i) => ({ text, ok: i === q.correct }));
+        const opts = shuffle(indexed);
+        return {
+          id: q.id,
+          text: q.text,
+          options: opts.map(o => o.text),
+          correct: opts.findIndex(o => o.ok)
+        };
+      });
+      questions.forEach(q => { answers[q.id] = null; });
+      render();
+    }
+
+    function answeredCount() {
+      return questions.filter(q => answers[q.id] !== null).length;
+    }
+
+    function render() {
+      const app = document.getElementById("app");
+      const total = questions.length;
+      const done = answeredCount();
+      const score = questions.filter(q => answers[q.id] === q.correct).length;
+      const pct = total ? Math.round(score / total * 100) : 0;
+
+      let html = `<header class="header"><h1>${quiz.title}</h1>`;
+      if (!submitted) {
+        html += `<p class="progress">Odpowiedziano: ${done} / ${total}</p>
+          <div class="bar"><div class="bar-fill" style="width:${done/total*100}%"></div></div>`;
+      } else {
+        html += `<p class="progress">Wynik quizu</p>`;
+      }
+      html += `</header>`;
+
+      if (submitted) {
+        const msg = pct === 100 ? "Świetnie! Wszystkie odpowiedzi poprawne."
+          : pct >= 70 ? "Dobry wynik! Sprawdź pytania z błędami poniżej."
+          : "Warto powtórzyć materiał. Zobacz poprawne odpowiedzi poniżej.";
+        html += `<div class="result"><h2>Twój wynik</h2>
+          <div class="score">${score} / ${total}</div>
+          <p>${pct}%</p><p>${msg}</p>
+          <button class="btn btn-sec" onclick="newRound()">Rozpocznij od nowa</button></div>`;
+      }
+
+      questions.forEach(q => {
+        const sel = answers[q.id];
+        const ok = sel === q.correct;
+        let cls = "card";
+        if (submitted && sel !== null) cls += ok ? " ok" : " bad";
+        html += `<div class="${cls}"><div class="num">Pytanie ${q.id}</div>
+          <p class="qtext">${q.text}</p><ul class="opts">`;
+        q.options.forEach((opt, i) => {
+          let ocls = "opt";
+          if (!submitted && sel === i) ocls += " sel";
+          if (submitted && i === q.correct) ocls += " ok";
+          if (submitted && sel === i && i !== q.correct) ocls += " bad";
+          const dis = submitted ? "disabled" : "";
+          html += `<li><label class="${ocls}">
+            <input type="radio" name="q${q.id}" ${sel===i?"checked":""} ${dis}
+              onclick="pick(${q.id},${i})"><span>${opt}</span></label></li>`;
+        });
+        html += `</ul></div>`;
+      });
+
+      if (!submitted) {
+        html += `<div class="submit-area">
+          <button class="btn btn-main" ${done<total?"disabled":""} onclick="check()">Sprawdź wynik</button>
+          ${done<total?'<p class="hint">Odpowiedz na wszystkie pytania</p>':""}
+        </div>`;
+      }
+
+      app.innerHTML = html;
+    }
+
+    function pick(id, i) {
+      if (submitted) return;
+      answers[id] = i;
+      render();
+    }
+
+    function check() {
+      if (answeredCount() < questions.length) return;
+      submitted = true;
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      render();
+    }
+
+    newRound();
+  </script>
+</body>
+</html>

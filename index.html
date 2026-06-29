@@ -13,7 +13,7 @@
       line-height: 1.5;
     }
     .page { max-width: 640px; margin: 0 auto; padding: 16px 16px 32px; }
-    .header, .result, .card {
+    .tabs, .header, .result, .card {
       background: #fff;
       border-radius: 12px;
       padding: 16px;
@@ -50,9 +50,26 @@
     .btn-sec { background: #fff; color: #2563eb; border: 2px solid #2563eb; }
     .hint { text-align: center; font-size: 0.8rem; color: #888; margin-top: 8px; }
     .submit-area { position: sticky; bottom: 0; padding: 16px 0 8px; background: linear-gradient(transparent, #f4f6f8 30%); }
+    .tabs { padding: 8px; position: sticky; top: 8px; z-index: 2; }
+    .tabs-row { display: flex; gap: 8px; }
+    .tabs-row + .tabs-row { margin-top: 8px; }
+    .tab {
+      flex: 1; border: 2px solid #d0d7e2; background: #f8fafc; color: #1e293b;
+      border-radius: 10px; padding: 10px 8px; font-size: 0.85rem; font-weight: 600; cursor: pointer;
+    }
+    .tab.active { background: #2563eb; border-color: #2563eb; color: #fff; }
+    .qa-answer {
+      margin-top: 10px; padding: 10px; border-radius: 8px;
+      background: #eff6ff; border: 1px solid #bfdbfe; color: #1e3a8a;
+      font-size: 0.9rem;
+    }
+    .qa-toggle { margin-top: 8px; }
+    .qa-controls { display: flex; gap: 8px; margin-bottom: 12px; }
+    .qa-controls .btn { margin-top: 0; }
     @media (min-width: 480px) {
       .page { padding: 24px 20px 40px; }
       .header h1 { font-size: 1.35rem; }
+      .tab { font-size: 0.95rem; }
     }
   </style>
 </head>
@@ -61,28 +78,87 @@
 
   <script id="quiz-data" type="application/json">
 {
-  "title": "Adaptacja dziecka do przedszkola i szkoły 2026",
-  "questions": [
-    {"id":1,"text":"Do elementów gotowości przedszkolnej NIE zalicza się:","options":["podstawowej samoobsługi","radzenia sobie z rozłąką z rodzicami","gotowości do zabawy bez asysty rodzica","wstępnej umiejętności nauki czytania"],"correct":3},
-    {"id":2,"text":"Jakie czynniki utrudniają dziecku adaptację do przedszkola?","options":["Labilność uczuciowa","Wrażliwość emocjonalna","Trudności w zakresie mowy","Wszystkie powyższe"],"correct":3},
-    {"id":3,"text":"Bodźce przedszkolne:","options":["Są dla trzylatka czynnikiem stymulującym rozwój","Nadmiernie obciążają jego układ sensoryczny","Stanowią ciekawą alternatywę dla dotychczasowej nudy"],"correct":1},
-    {"id":4,"text":"Które z poniższych zachowań jest uznawane za normatywny przejaw lęku separacyjnego u dziecka rozpoczynającego edukację przedszkolną:","options":["Płacz i protest podczas rozstania z rodzicem, który mija w ciągu kilkunastu minut po rozpoczęciu zabawy","Apatia, brak kontaktu wzrokowego z nauczycielem i odmowa przyjmowania posiłków przez cały dzień","Natychmiastowe, bezproblemowe wchodzenie do sali bez odwracania się w stronę rodzica od pierwszego dnia","Agresja fizyczna, skierowana wobec innych dzieci i dorosłych opiekunów"],"correct":0},
-    {"id":5,"text":"Pojęcie gotowości szkolnej oznacza:","options":["Osiągnięcie przez dziecko wieku biologicznego 7 lat","Osiągnięcie takiego poziomu rozwoju fizycznego, psychicznego, społecznego i emocjonalnego, który umożliwia prawidłowe funkcjonowanie w warunkach szkoły","Opanowanie umiejętności płynnego czytania i pisania","Zdolności bezwzględnego posłuszeństwa wobec osób dorosłych"],"correct":1},
-    {"id":6,"text":"Które z działań nauczyciela przedszkola najbardziej sprzyja obniżeniu lęku u dzieci na początku roku przedszkolnego?","options":["Wprowadzenie sztywnej dyscypliny i ignorowanie płaczu, aby dzieci szybciej zrozumiały zasady i normy, obowiązujące w grupie","Stosowanie powtarzalnych rytuałów, jasnego planu dnia oraz okazywanie empatii i wsparcia emocjonalnego","Organizowanie głośnych zabaw ruchowych o charakterze rywalizacyjnym","Pozostawienie dzieci samych sobie, aby samodzielnie rozwiązywały kryzys rozstania"],"correct":1},
-    {"id":7,"text":"Zjawisko „szoku adaptacyjnego” u pierwszoklasistów najczęściej wiąże się ze zmianą dominującej formy aktywności. Jaka zmiana tu zachodzi?","options":["Przejście od aktywności zadaniowej do aktywności swobodnej","Przejście od dominacji zabawy do dominacji systematycznej nauki (aktywności zadaniowej)","Przejście od pracy indywidualnej do pracy wyłącznie w grupach","Całkowity brak aktywności fizycznej na rzecz rozwoju intelektualnego"],"correct":1},
-    {"id":8,"text":"Wskaż prawidłową postawę rodzica podczas rozstania z dzieckiem w szatni przedszkolnej:","options":["Przedłużanie pożegnania, wracanie do sali i ponowne przytulanie na każdy płacz dziecka","Czułe, jasne, ale krótkie pożegnanie, określenie czasu powrotu w sposób zrozumiały dla dziecka i konsekwentne odejście","Ucieczka bez pożegnania, gdy dziecko na chwilę odwróci uwagę","Okłamywanie dziecka, że rodzic idzie tylko do samochodu i zaraz wraca"],"correct":1},
-    {"id":9,"text":"Dni adaptacyjne w przedszkolu polegają głównie na","options":["Pedagogizacji rodziców","Zapoznawaniu z regulaminem placówki","Przybliżaniu zarówno dzieciom, jak i rodzicom organizacji dnia przedszkolnego","Zabawach integrujących"],"correct":2},
-    {"id":10,"text":"Który z czynników jest uznawany za kluczowy w kontekście dojrzałości emocjonalnej dziecka rozpoczynającego naukę w szkole?","options":["Umiejętność pisania","Zdolność do kontrolowania swoich impulsów i radzenia sobie z porażką","Posiadanie wysokiego poziomu IQ","Zdolność do długiego siedzenia w ławce bez ruchu"],"correct":1},
-    {"id":11,"text":"Rola rodziców w procesie adaptacji dziecka do szkoły polega na","options":["Wyręczaniu dziecka we wszystkich nowych obowiązkach","Budowaniu pozytywnego obrazu szkoły z jednoczesnym wspieraniem samodzielności dziecka","Unikaniu rozmów o szkole, aby nie potęgować stresu u dziecka","Wymaganiu najlepszych ocen"],"correct":1},
-    {"id":12,"text":"Który z procesów poznawczych odgrywa najważniejszą rolę w adaptacji dziecka do szkoły?","options":["Pamięć mechaniczna","Zdolność do celowej i trwałej uwagi (uwaga dowolna)","Myślenie abstrakcyjne","Wyobraźnia twórcza"],"correct":1}
+  "subjects": [
+    {
+      "key": "adaptacja",
+      "title": "Adaptacja dziecka do przedszkola i szkoły 2026",
+      "questions": [
+        {"id":1,"text":"Do elementów gotowości przedszkolnej NIE zalicza się:","options":["podstawowej samoobsługi","radzenia sobie z rozłąką z rodzicami","gotowości do zabawy bez asysty rodzica","wstępnej umiejętności nauki czytania"],"correct":3},
+        {"id":2,"text":"Jakie czynniki utrudniają dziecku adaptację do przedszkola?","options":["Labilność uczuciowa","Wrażliwość emocjonalna","Trudności w zakresie mowy","Wszystkie powyższe"],"correct":3},
+        {"id":3,"text":"Bodźce przedszkolne:","options":["Są dla trzylatka czynnikiem stymulującym rozwój","Nadmiernie obciążają jego układ sensoryczny","Stanowią ciekawą alternatywę dla dotychczasowej nudy"],"correct":1},
+        {"id":4,"text":"Które z poniższych zachowań jest uznawane za normatywny przejaw lęku separacyjnego u dziecka rozpoczynającego edukację przedszkolną:","options":["Płacz i protest podczas rozstania z rodzicem, który mija w ciągu kilkunastu minut po rozpoczęciu zabawy","Apatia, brak kontaktu wzrokowego z nauczycielem i odmowa przyjmowania posiłków przez cały dzień","Natychmiastowe, bezproblemowe wchodzenie do sali bez odwracania się w stronę rodzica od pierwszego dnia","Agresja fizyczna, skierowana wobec innych dzieci i dorosłych opiekunów"],"correct":0},
+        {"id":5,"text":"Pojęcie gotowości szkolnej oznacza:","options":["Osiągnięcie przez dziecko wieku biologicznego 7 lat","Osiągnięcie takiego poziomu rozwoju fizycznego, psychicznego, społecznego i emocjonalnego, który umożliwia prawidłowe funkcjonowanie w warunkach szkoły","Opanowanie umiejętności płynnego czytania i pisania","Zdolności bezwzględnego posłuszeństwa wobec osób dorosłych"],"correct":1},
+        {"id":6,"text":"Które z działań nauczyciela przedszkola najbardziej sprzyja obniżeniu lęku u dzieci na początku roku przedszkolnego?","options":["Wprowadzenie sztywnej dyscypliny i ignorowanie płaczu, aby dzieci szybciej zrozumiały zasady i normy, obowiązujące w grupie","Stosowanie powtarzalnych rytuałów, jasnego planu dnia oraz okazywanie empatii i wsparcia emocjonalnego","Organizowanie głośnych zabaw ruchowych o charakterze rywalizacyjnym","Pozostawienie dzieci samych sobie, aby samodzielnie rozwiązywały kryzys rozstania"],"correct":1},
+        {"id":7,"text":"Zjawisko „szoku adaptacyjnego” u pierwszoklasistów najczęściej wiąże się ze zmianą dominującej formy aktywności. Jaka zmiana tu zachodzi?","options":["Przejście od aktywności zadaniowej do aktywności swobodnej","Przejście od dominacji zabawy do dominacji systematycznej nauki (aktywności zadaniowej)","Przejście od pracy indywidualnej do pracy wyłącznie w grupach","Całkowity brak aktywności fizycznej na rzecz rozwoju intelektualnego"],"correct":1},
+        {"id":8,"text":"Wskaż prawidłową postawę rodzica podczas rozstania z dzieckiem w szatni przedszkolnej:","options":["Przedłużanie pożegnania, wracanie do sali i ponowne przytulanie na każdy płacz dziecka","Czułe, jasne, ale krótkie pożegnanie, określenie czasu powrotu w sposób zrozumiały dla dziecka i konsekwentne odejście","Ucieczka bez pożegnania, gdy dziecko na chwilę odwróci uwagę","Okłamywanie dziecka, że rodzic idzie tylko do samochodu i zaraz wraca"],"correct":1},
+        {"id":9,"text":"Dni adaptacyjne w przedszkolu polegają głównie na","options":["Pedagogizacji rodziców","Zapoznawaniu z regulaminem placówki","Przybliżaniu zarówno dzieciom, jak i rodzicom organizacji dnia przedszkolnego","Zabawach integrujących"],"correct":2},
+        {"id":10,"text":"Który z czynników jest uznawany za kluczowy w kontekście dojrzałości emocjonalnej dziecka rozpoczynającego naukę w szkole?","options":["Umiejętność pisania","Zdolność do kontrolowania swoich impulsów i radzenia sobie z porażką","Posiadanie wysokiego poziomu IQ","Zdolność do długiego siedzenia w ławce bez ruchu"],"correct":1},
+        {"id":11,"text":"Rola rodziców w procesie adaptacji dziecka do szkoły polega na","options":["Wyręczaniu dziecka we wszystkich nowych obowiązkach","Budowaniu pozytywnego obrazu szkoły z jednoczesnym wspieraniem samodzielności dziecka","Unikaniu rozmów o szkole, aby nie potęgować stresu u dziecka","Wymaganiu najlepszych ocen"],"correct":1},
+        {"id":12,"text":"Który z procesów poznawczych odgrywa najważniejszą rolę w adaptacji dziecka do szkoły?","options":["Pamięć mechaniczna","Zdolność do celowej i trwałej uwagi (uwaga dowolna)","Myślenie abstrakcyjne","Wyobraźnia twórcza"],"correct":1}
+      ]
+    },
+    {
+      "key": "pedagogika",
+      "title": "Pedagogika opiekuńczo-wychowawcza - egzamin",
+      "mode": "quiz",
+      "questions": [
+        {"id":1,"text":"Opieka tym różni się od wychowania, że","options":["Nie jest związana z nastawieniem na zmiany osobowości podopiecznego","Nie może jej sprawować nikt inny niż nauczyciel","jest działaniem niezaplanowanym","Wychowanie odbywa się tylko w określonym ustawowo okresie życia człowieka"],"correct":0},
+        {"id":2,"text":"Jaka jest nadrzędna zasada opieki nad dzieckiem?","options":["Powinna ona podlegać kontroli organów państwowych i samorządowych","Należy dążyć do sytuacji, aby dziecko mogło przebywać w rodzinie biologicznej","Dziecko powinno otrzymywać wszystko, czego chce","Najważniejsze jest zapewnienie potrzeb materialnych dziecka"],"correct":1},
+        {"id":3,"text":"Kto nie jest zobowiązany do bezpośredniej opieki nad dzieckiem?","options":["Rodzina","Wychowawcy","Nauczyciele","Sądy rodzinne"],"correct":3},
+        {"id":4,"text":"Kto jest uprawniony do orzekania o pozbawieniu lub ograniczeniu władzy rodzicielskiej?","options":["Policja","Ośrodki pomocy rodzinie","Sąd rodzinny","Poradnia psychologiczno-pedagogiczna"],"correct":2},
+        {"id":5,"text":"Która forma opieki jest trwała i nierozerzywalna?","options":["Rodzina zastępcza","Pogotowie opiekuńcze","Adopcja","Przysposobienie pełne"],"correct":2},
+        {"id":6,"text":"Co nie jest koniecznym warunkiem do stania się rodziną zastępczą?","options":["Odpowiednie szkolenie","Posiadanie zasobów materialnych, zapewniających dziecku odpowiednie warunki życia","Posiadanie stałej pracy przez obojga rodziców zastępczych","Gotowość do zaspokajania potrzeb psychicznych dziecka"],"correct":2},
+        {"id":7,"text":"Czy dziecko ma prawo do prywatności w różnych formach opieki zastępczej?","options":["Nie","Tak, we wszystkich sytuacjach","Tak, ale możliwa ingerencja w sytuacjach, które są niepokojące dla opiekunów"],"correct":2},
+        {"id":8,"text":"Czy rodzina zastępcza sprawuje nad dzieckiem władzę rodzicielską?","options":["Tak","Częściowo","Nie, jest tylko przedstawicielem prawnym"],"correct":2},
+        {"id":9,"text":"W przypadku ustalania pieczy zastępczej podstawową zasadą jest:","options":["Dobieranie dziecka według wymagań rodziców zastępczych","Dobieranie rodziców według potrzeb dziecka","Obie strony - dziecko i potencjalni rodzice muszą się zgodzić na taką decyzję sądu","Rodzice naturalni muszą zgodzić się na proponowaną rodzinę zastępczą"],"correct":1},
+        {"id":10,"text":"Ile dzieci może być pod opieką Rodzinnego Domu Dziecka, nie wliczając dzieci własnych i adoptowanych?","options":["5","3","8","10"],"correct":2},
+        {"id":11,"text":"Funkcja kompensacyjna Domu Dziecka polega na:","options":["przysposabianiu nowo przybyłego do placówki, do warunków życia zakładowego","niwelowaniu odchyleń w rozwoju dziecka i wyrównywaniu braków","usuwaniu czynników zagrażających zdrowiu i prawidłowemu rozwojowi","zaspokajaniu potrzeb, czuwaniu nad bezpieczeństwem i zdrowiem dzieci"],"correct":1},
+        {"id":12,"text":"Bursa jest:","options":["Jedynym z ogniw konkretnej szkoły","Międzyszkolną placówką opiekuńczo-wychowawczą dla młodzieży uczącej się z różnych szkół"],"correct":1}
+      ]
+    },
+    {
+      "key": "brat",
+      "title": "Pytania od brata",
+      "mode": "qa",
+      "questions": [
+        {"id":1,"text":"Pedagogika specjalna jest nauką empiryczną ponieważ","answer":"bada, analizuje i porównuje prawidłowości oraz specyfikę rozwoju procesów psychofizycznych z odchyleniem od jakiejkolwiek normy rozwojowej"},
+        {"id":2,"text":"Pedagogika specjalna jest nauką teoretyczną ponieważ","answer":"uogólnia uzyskane drogą empiryczną dane oraz wyprowadza teorie wyjaśniające wieloaspektowe przyczyny, charakter i konsekwencje niepełnosprawności"},
+        {"id":3,"text":"Pedagogika specjalna jest nauką normatywną ponieważ","answer":"przejawia się w formułowaniu celów leczniczych i pedagogicznych oraz zasad, jakie powinny być stosowane w oddziaływaniach pedagogicznych"},
+        {"id":4,"text":"W rozumieniu pedagogiki specjalnej jednostką z odchyleniem rozwoju od normy to","answer":"jednostka, u której występują trudności w rozwoju poznawania świata otaczającego i przystosowaniu się do środowiska społecznego"},
+        {"id":5,"text":"Pedagogika specjalna rozumiana jest jako działalność, której celem jest","answer":"wszechstronne oddziaływanie na człowieka z niepełnosprawnością"},
+        {"id":6,"text":"Czy pedagogika specjalna jest autonomiczna wobec pedagogiki ogólnej","answer":"nie jest autonomiczna wobec pedagogiki ogólnej"},
+        {"id":7,"text":"Związek pedagogiki specjalnej z antropologią filozoficzną dotyczy","answer":"kim człowiek jest, co może osiągnąć i kim być powinien"},
+        {"id":8,"text":"Rewalidacja z pedagogice specjalnej to","answer":"wychowanie specjalne jednostek upośledzonych zmierzające do pełniejszego ich rozwoju"},
+        {"id":9,"text":"Cztery zasadnicze drogi oddziaływań rewalidacyjnych","answer":"kompensacja, korygowanie, usprawnianie, dynamizowanie"},
+        {"id":10,"text":"Nadkompensacja to","answer":"zaprzeczenie swoim słabościom i próba wybicia się w tej dziedzinie, w której osoba z niepełnosprawnością jest najsłabsza"},
+        {"id":11,"text":"Z punktu widzenia organizacji szkolnictwa specjalnego wyróżnia się w pedagogice specjalnej trzy kierunki","answer":"pedagogikę specjalną kompensacyjną, pedagogikę specjalną resocjalizacji, pedagogikę specjalną leczniczą"},
+        {"id":12,"text":"W 1992 r z inicjatywy Marii Grzegorzewskiej powstał w Polsce","answer":"Państwowy Instytut Pedagogiki Specjalnej"},
+        {"id":13,"text":"Terminem niepełnosprawności intelektualnej obejmujemy","answer":"całą osobowość jednostki"},
+        {"id":14,"text":"W diagnozie upośledzenia umysłowego znaczenie odgrywają dwa kryteria","answer":"poziom inteligencji i dojrzałość społeczna"},
+        {"id":15,"text":"Podstawowym kryterium różnicującym przyczyny niepełnosprawności intelektualnej jest","answer":"czas powstania uszkodzeń"},
+        {"id":16,"text":"Trzy źródła powstania oligofrenii według Z. Sękowskiej","answer":"oligofrenia pierwotna, wtórna, uwarunkowana czynnikami endogennymi i egzogennymi"},
+        {"id":17,"text":"Zespół Downa należy do najczęstszych autosomalnych","answer":"aberracji liczbowych"},
+        {"id":18,"text":"Zespół Turnera dotyczy wyłącznie","answer":"kobiet"},
+        {"id":19,"text":"Zespół Klinefeltera dotyczy wyłącznie","answer":"mężczyzn"},
+        {"id":20,"text":"Tyflopedagogika jest działem pedagogiki specjalnej zajmującym się","answer":"nauczaniem i wychowaniem jednostek z wadami wzroku"},
+        {"id":21,"text":"Dział pedagogiki specjalnej w zakresie wychowania i nauczania osób niesłyszących i niedosłyszących","answer":"surdopedagogika"},
+        {"id":22,"text":"Niedosłuch to","answer":"częściowa utrata słuchu o zróżnicowanym poziomie"},
+        {"id":23,"text":"Dwie główne formy pedagogiki terapeutycznej według J. Doroszewskiej","answer":"pedagogika terapeutyczna lecznicza i pedagogika terapeutyczna wychowawcza"},
+        {"id":24,"text":"Wspólnym mianownikiem wszystkich chorób przewlekłych jest","answer":"długotrwałość przebiegu i konieczność stałego leczenia oraz wsparcia"},
+        {"id":25,"text":"Pedagogika terapeutyczna to dział","answer":"pedagogiki specjalnej zajmujący się wychowaniem i wsparciem osób przewlekle chorych"}
+      ]
+    }
   ]
 }
   </script>
 
   <script>
-    const quiz = JSON.parse(document.getElementById("quiz-data").textContent);
+    const data = JSON.parse(document.getElementById("quiz-data").textContent);
+    const subjects = data.subjects;
+    let activeSubject = subjects[0].key;
     let questions = [];
     let answers = {};
+    let qaOpen = {};
     let submitted = false;
 
     function shuffle(arr) {
@@ -95,19 +171,27 @@
     }
 
     function newRound() {
+      const subject = subjects.find((s) => s.key === activeSubject);
       submitted = false;
       answers = {};
-      questions = shuffle(quiz.questions).map(q => {
-        const indexed = q.options.map((text, i) => ({ text, ok: i === q.correct }));
-        const opts = shuffle(indexed);
-        return {
-          id: q.id,
-          text: q.text,
-          options: opts.map(o => o.text),
-          correct: opts.findIndex(o => o.ok)
-        };
-      });
-      questions.forEach(q => { answers[q.id] = null; });
+      qaOpen = {};
+
+      if (subject.mode === "qa") {
+        questions = [...subject.questions];
+        questions.forEach((q) => { qaOpen[q.id] = false; });
+      } else {
+        questions = shuffle(subject.questions).map(q => {
+          const indexed = q.options.map((text, i) => ({ text, ok: i === q.correct }));
+          const opts = shuffle(indexed);
+          return {
+            id: q.id,
+            text: q.text,
+            options: opts.map(o => o.text),
+            correct: opts.findIndex(o => o.ok)
+          };
+        });
+        questions.forEach(q => { answers[q.id] = null; });
+      }
       render();
     }
 
@@ -121,17 +205,43 @@
       const done = answeredCount();
       const score = questions.filter(q => answers[q.id] === q.correct).length;
       const pct = total ? Math.round(score / total * 100) : 0;
+      const subject = subjects.find((s) => s.key === activeSubject);
+      const isQaMode = subject.mode === "qa";
 
-      let html = `<header class="header"><h1>${quiz.title}</h1>`;
-      if (!submitted) {
-        html += `<p class="progress">Odpowiedziano: ${done} / ${total}</p>
+      let html = `<div class="tabs">`;
+      const topTabs = subjects.filter((s) => s.key !== "brat");
+      const bottomTab = subjects.find((s) => s.key === "brat");
+
+      html += `<div class="tabs-row">`;
+      topTabs.forEach((s) => {
+        html += `<button class="tab ${s.key === activeSubject ? "active" : ""}" onclick="setSubject('${s.key}')">${s.title}</button>`;
+      });
+      html += `</div>`;
+      if (bottomTab) {
+        html += `<div class="tabs-row"><button class="tab ${bottomTab.key === activeSubject ? "active" : ""}" onclick="setSubject('${bottomTab.key}')">${bottomTab.title}</button></div>`;
+      }
+      html += `</div>`;
+
+      let html2 = `<header class="header"><h1>${subject.title}</h1>`;
+      if (isQaMode) {
+        html2 += `<p class="progress">Kliknij pytanie, aby pokazać lub ukryć odpowiedź</p>`;
+      } else if (!submitted) {
+        html2 += `<p class="progress">Odpowiedziano: ${done} / ${total}</p>
           <div class="bar"><div class="bar-fill" style="width:${done/total*100}%"></div></div>`;
       } else {
-        html += `<p class="progress">Wynik quizu</p>`;
+        html2 += `<p class="progress">Wynik quizu</p>`;
       }
-      html += `</header>`;
+      html2 += `</header>`;
+      html += html2;
 
-      if (submitted) {
+      if (isQaMode) {
+        html += `<div class="qa-controls">
+          <button class="btn btn-main" onclick="showAllAnswers()">Pokaż wszystko</button>
+          <button class="btn btn-sec" onclick="hideAllAnswers()">Schowaj wszystko</button>
+        </div>`;
+      }
+
+      if (!isQaMode && submitted) {
         const msg = pct === 100 ? "Świetnie! Wszystkie odpowiedzi poprawne."
           : pct >= 70 ? "Dobry wynik! Sprawdź pytania z błędami poniżej."
           : "Warto powtórzyć materiał. Zobacz poprawne odpowiedzi poniżej.";
@@ -142,26 +252,36 @@
       }
 
       questions.forEach((q, n) => {
-        const sel = answers[q.id];
-        const ok = sel === q.correct;
-        let cls = "card";
-        if (submitted && sel !== null) cls += ok ? " ok" : " bad";
-        html += `<div class="${cls}"><div class="num">Pytanie ${n + 1}</div>
-          <p class="qtext">${q.text}</p><ul class="opts">`;
-        q.options.forEach((opt, i) => {
-          let ocls = "opt";
-          if (!submitted && sel === i) ocls += " sel";
-          if (submitted && i === q.correct) ocls += " ok";
-          if (submitted && sel === i && i !== q.correct) ocls += " bad";
-          const dis = submitted ? "disabled" : "";
-          html += `<li><label class="${ocls}">
-            <input type="radio" name="q${q.id}" ${sel===i?"checked":""} ${dis}
-              onclick="pick(${q.id},${i})"><span>${opt}</span></label></li>`;
-        });
-        html += `</ul></div>`;
+        if (isQaMode) {
+          const open = qaOpen[q.id];
+          const preview = q.text.length > 95 ? `${q.text.slice(0, 95)}...` : q.text;
+          html += `<div class="card"><div class="num">Pytanie ${n + 1}</div>
+            <p class="qtext">${preview}</p>
+            ${open ? `<div class="qa-answer">${q.answer}</div>` : ""}
+            <button class="btn btn-sec qa-toggle" onclick="toggleAnswer(${q.id})">${open ? "Ukryj odpowiedź" : "Pokaż odpowiedź"}</button>
+          </div>`;
+        } else {
+          const sel = answers[q.id];
+          const ok = sel === q.correct;
+          let cls = "card";
+          if (submitted && sel !== null) cls += ok ? " ok" : " bad";
+          html += `<div class="${cls}"><div class="num">Pytanie ${n + 1}</div>
+            <p class="qtext">${q.text}</p><ul class="opts">`;
+          q.options.forEach((opt, i) => {
+            let ocls = "opt";
+            if (!submitted && sel === i) ocls += " sel";
+            if (submitted && i === q.correct) ocls += " ok";
+            if (submitted && sel === i && i !== q.correct) ocls += " bad";
+            const dis = submitted ? "disabled" : "";
+            html += `<li><label class="${ocls}">
+              <input type="radio" name="q${q.id}" ${sel===i?"checked":""} ${dis}
+                onclick="pick(${q.id},${i})"><span>${opt}</span></label></li>`;
+          });
+          html += `</ul></div>`;
+        }
       });
 
-      if (!submitted) {
+      if (!isQaMode && !submitted) {
         html += `<div class="submit-area">
           <button class="btn btn-main" ${done<total?"disabled":""} onclick="check()">Sprawdź wynik</button>
           ${done<total?'<p class="hint">Odpowiedz na wszystkie pytania</p>':""}
@@ -182,6 +302,28 @@
       submitted = true;
       window.scrollTo({ top: 0, behavior: "smooth" });
       render();
+    }
+
+    function toggleAnswer(questionId) {
+      qaOpen[questionId] = !qaOpen[questionId];
+      render();
+    }
+
+    function showAllAnswers() {
+      questions.forEach((q) => { qaOpen[q.id] = true; });
+      render();
+    }
+
+    function hideAllAnswers() {
+      questions.forEach((q) => { qaOpen[q.id] = false; });
+      render();
+    }
+
+    function setSubject(subjectKey) {
+      if (activeSubject === subjectKey) return;
+      activeSubject = subjectKey;
+      newRound();
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
     newRound();

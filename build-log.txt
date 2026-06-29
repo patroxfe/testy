@@ -1,0 +1,39 @@
+﻿node.exe : The `envFile` option is deprecated, please use `envDir: false` instead.
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" "C:\Program Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (The `envFile` o...false` instead.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+The `envFile` option is deprecated, please use `envDir: false` instead.
+Using Vite Environment API
+vite v8.1.0 building client environment for production...
+[2K
+transforming...Ôťô 51 modules transformed.
+rendering chunks...
+computing gzip size...
+build/client/.vite/manifest.json                1.23 kB Ôöé gzip:  0.35 kB
+build/client/assets/root-y5pUHwNx.css           8.58 kB Ôöé gzip:  2.63 kB
+build/client/assets/root-CkIHjuyn.js           11.40 kB Ôöé gzip:  4.63 kB
+build/client/assets/home-H0q-JfS0.js           12.92 kB Ôöé gzip:  4.62 kB
+build/client/assets/components-B4jgJ25I.js     33.37 kB Ôöé gzip: 11.73 kB
+build/client/assets/jsx-runtime-CPvZlgND.js    82.08 kB Ôöé gzip: 27.49 kB
+build/client/assets/entry.client-D8B4RAu_.js  185.90 kB Ôöé gzip: 58.64 kB
+
+Ôťô built in 377ms
+vite v8.1.0 building ssr environment for production...
+[2K
+transforming...Ôťô 6 modules transformed.
+rendering chunks...
+
+Ôťô 1 asset cleaned from React Router server build.
+build\server\assets\server-build-y5pUHwNx.css
+
+computing gzip size...
+build/server/.vite/manifest.json               0.22 kB Ôöé gzip: 0.15 kB
+build/server/assets/server-build-y5pUHwNx.css  8.58 kB Ôöé gzip: 2.63 kB
+build/server/index.js                          6.52 kB Ôöé gzip: 2.27 kB
+
+Ôťô built in 105ms
+The `envFile` option is deprecated, please use `envDir: false` instead.
+The `envFile` option is deprecated, please use `envDir: false` instead.
